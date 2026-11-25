@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220"><title>KHC Coffee | Coffee POS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">B</div><div><b>KHC Coffee</b><small>COFFEE MANAGEMENT</small></div></div>
+    <div class="workspace"><span class="dot"></span> Main Branch <span class="chev">⌄</span></div>
+    <div class="nav-caption">WORKSPACE</div>
+    <nav id="nav">
+      <button class="nav-item active" data-page="pos"><span>▦</span> Point of Sale</button>
+      <button class="nav-item" data-page="dashboard"><span>◫</span> Dashboard</button>
+      <button class="nav-item" data-page="orders"><span>▤</span> Orders <em id="order-count">0</em></button>
+      <button class="nav-item" data-page="Order"><span>♨</span> Ordering Diplay</button>
+      <div class="nav-caption">MANAGEMENT</div>
+      <button class="nav-item" data-page="products"><span>▧</span> Products</button>
+      <button class="nav-item" data-page="categories"><span>▦</span> Categories</button>
+      <button class="nav-item" data-page="reports"><span>▥</span> Reports</button>
+      <div class="nav-caption">SYSTEM</div>
+      <button class="nav-item" data-page="settings"><span>⚙</span> Settings</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="avatar">AD</div><div><b>Admin User</b><small>Administrator</small></div><span class="more">•••</span></div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuBtn">☰</button>
+      <div><div class="eyebrow">MONDAY, NOVEMBER 24, 2026</div><h1 id="page-title">Point of Sale</h1></div>
+      <div class="top-actions"><div class="status"><span class="dot"></span><span id="connection-status">Demo mode</span></div><button class="icon-btn" title="Notifications">♧</button><div class="top-user"><div class="avatar">AD</div><div><b>Admin</b><small>Owner</small></div></div></div>
+    </header>
+    <section class="page-wrap">
+      <div id="page-content"></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal-backdrop" id="modal"></div>
+<script src="app.js"></script>
+</body></html>

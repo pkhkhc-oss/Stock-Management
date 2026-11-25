@@ -1,66 +1,33 @@
-# Stock Management System
+# BeanFlow Coffee POS — Clone
 
-A modular stock-management application using React + JavaScript + CSS, Node.js + Express REST API, Prisma ORM, and MySQL.
+A responsive coffee-shop POS/admin dashboard recreated from the supplied compiled app bundle.
 
-## Features
-- JWT login and role-aware API middleware
-- Dashboard KPIs
-- Product, category, warehouse, supplier, and customer master data
-- Inventory balances and immutable stock movement ledger
-- Stock receiving, issuing, and adjustment endpoints
-- Purchase orders and goods receiving
-- Sales orders and dispatch
-- Warehouse transfers (dispatch and receiving)
-- API validation, pagination, audit logging, Swagger/OpenAPI
-- Separate frontend/backend libraries and module folders
-- Docker Compose for MySQL, API, and frontend
-- Seeded administrator and demo data
+## Included modules
+- Point of Sale: menu search, category filters, cart quantities, tax calculation and checkout
+- Dashboard: sales, order, product and pending-order summary
+- Order management: search, filter and update order status
+- Kitchen display: preparation queue and status progression
+- Products and categories: add/edit/delete catalogue records
+- Reports: sales summary and CSV export
+- Settings: store profile, JSON backup and optional Supabase connection
 
-## Requirements
-- Node.js 20+
-- Docker Desktop (recommended) OR MySQL 8+
-- npm
-
-## Quick start (Docker)
-1. Copy `.env.example` to `.env`.
-2. Change `JWT_SECRET` and the seeded admin password.
-3. Run:
+## Run locally
+1. Extract the ZIP.
+2. Open `index.html` in Chrome/Edge, or serve the folder:
    ```bash
-   docker compose up --build
+   python -m http.server 8080
    ```
-4. Open frontend: http://localhost:5173
-5. API docs: http://localhost:4000/api-docs
-6. Default seeded login:
-   - Email: `admin@example.com`
-   - Password: `ChangeMe123!`
-   Change this immediately after first login.
+3. Visit `http://localhost:8080`.
 
-## Local development
-### Backend
-```bash
-cd backend
-cp .env.example .env
-npm install
-npx prisma generate
-npx prisma migrate dev --name init
-npm run seed
-npm run dev
-```
+The app works in demo mode and saves data in browser local storage. No build step is required.
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Set `VITE_API_URL=http://localhost:4000/api/v1` in `frontend/.env`.
+## Connect Supabase
+1. Create a Supabase project.
+2. Open SQL Editor and run `supabase/schema.sql`.
+3. In the app, open **Settings → Supabase connection**.
+4. Enter your Project URL and anon public key, then click **Connect database**.
 
-## Important inventory rules
-- Every confirmed stock change creates a `StockMovement`.
-- Inventory updates run inside database transactions.
-- Transfers are represented as dispatch from source and receipt into destination.
-- This starter uses moving weighted-average costing for receipt valuation. FIFO batch valuation can be added in the valuation library.
-- Validate tax, accounting, approval, and stock policies against your local business requirements before production use.
+The browser app uses the Supabase anon key only. Configure Row Level Security and policies before production use. Do not expose a service-role key in client-side code.
 
-## Project structure
-See `docs/architecture.md` and `docs/maintenance-guide.md`.
+## Important limitations
+This is a functional frontend clone based on the supplied compiled JavaScript bundle. The upload did not include the original backend/API server, server-side authorization, payment gateway, receipt printer integration, or original production database. Those integrations are not reproduced. Supabase mode expects the schema in this project and appropriate RLS policies. Demo checkout does not process real payments.
